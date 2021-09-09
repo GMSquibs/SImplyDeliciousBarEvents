@@ -13,16 +13,26 @@ namespace SimplyDeliciousBarEvents.Models
 
         private string _location;
         private DateTime _eventDate;
-        private DateTime _eventTime;
+        private TimeSpan _eventTime;
         private int _headCount;
         private float _eventCost;
         private List<MenuViewModel> _menu;
-        private ClientViewModel _client;
-        private List<EmployeeViewModel> _employees;
+        private string _client;
+        private string _clientContactNumber;
+        private string _employee;
 
-        public EventSheetViewModel()
+        public EventSheetViewModel(string location, DateTime eventDate, TimeSpan eventTime, int headCount, 
+            float eventCost, string client, string clientContactNumber,string employee            
+            )
         {
-
+            Location = location;
+            EventDate = eventDate;
+            EventTime = eventTime;
+            HeadCount = headCount;
+            EventCost = eventCost;            
+            Client = client;
+            ClientContactNumber = clientContactNumber;
+            Employee = employee;
         }
 
         public string Location
@@ -37,7 +47,7 @@ namespace SimplyDeliciousBarEvents.Models
             set { _eventDate = value; }
         }
 
-        public DateTime EventTime
+        public TimeSpan EventTime
         {
             get { return _eventTime; }
             set { _eventTime = value; }
@@ -61,16 +71,22 @@ namespace SimplyDeliciousBarEvents.Models
             set { _menu = value; }
         }
 
-        public List<EmployeeViewModel> Employees
+        public string Employee
         {
-            get { return _employees; }
-            set { _employees = value; }
+            get { return _employee; }
+            set { _employee = value; }
         }
 
-        public ClientViewModel Client
+        public string Client
         {
             get { return _client; }
             set { _client = value; }
+        }
+
+        public string ClientContactNumber
+        {
+            get { return _clientContactNumber; }
+            set { _clientContactNumber = value; }
         }
     }
 }

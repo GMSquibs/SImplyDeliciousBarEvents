@@ -18,5 +18,6 @@ namespace SimplyDeliciousBarEvents.Data
         public DbSet<SimplyDeliciousBarEvents.Models.EmployeeViewModel> EmployeeViewModel { get; set; }
         public DbSet<SimplyDeliciousBarEvents.Models.EventSheetViewModel> EventSheetViewModel { get; set; }
         public DbSet<SimplyDeliciousBarEvents.Models.EventViewModel> EventViewModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.LocationsViewModel> LocationsViewModel { get; set; }
     }
 }

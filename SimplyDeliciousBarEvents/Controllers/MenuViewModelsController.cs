@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,14 @@ namespace SimplyDeliciousBarEvents.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: MenuViewModels
         public async Task<IActionResult> Index()
         {
             return View(await _context.MenuViewModel.ToListAsync());
         }
 
+        [Authorize]
         // GET: MenuViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +46,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(menuViewModel);
         }
 
+        [Authorize]
         // GET: MenuViewModels/Create
         public IActionResult Create()
         {
@@ -52,6 +56,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: MenuViewModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MenuID,BeverageName,Price,Servings")] MenuViewModel menuViewModel)
@@ -66,6 +71,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         }
 
         // GET: MenuViewModels/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +90,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: MenuViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("MenuID,BeverageName,Price,Servings")] MenuViewModel menuViewModel)
@@ -116,6 +123,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(menuViewModel);
         }
 
+        [Authorize]
         // GET: MenuViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -135,6 +143,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         }
 
         // POST: MenuViewModels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,30 @@ namespace SimplyDeliciousBarEvents.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: ClientViewModels
         public async Task<IActionResult> Index()
         {
             return View(await _context.ClientViewModel.ToListAsync());
         }
 
+        [Authorize]
+        // GET: ClientViewModels/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        [Authorize]
+        // POST: ClientViewModels/ShowSearchForm
+        public async Task<IActionResult> ShowSearchResults(string ContactNumber, string FirstName, string LastName, string Email)
+        {
+            return View("Index", await _context.ClientViewModel.Where
+                (x => x.ContactNumber == ContactNumber && x.FirstName == FirstName && x.LastName == LastName)
+                .ToListAsync());
+        }
+
+        [Authorize]
         // GET: ClientViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +62,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(clientViewModel);
         }
 
+        [Authorize]
         // GET: ClientViewModels/Create
         public IActionResult Create()
         {
@@ -52,6 +72,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: ClientViewModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ClientID,ContactNumber,FirstName,LastName,Email,Address,PrimaryOrSecondaryContact")] ClientViewModel clientViewModel)
@@ -65,6 +86,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(clientViewModel);
         }
 
+        [Authorize]
         // GET: ClientViewModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -84,6 +106,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: ClientViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ClientID,ContactNumber,FirstName,LastName,Email,Address,PrimaryOrSecondaryContact")] ClientViewModel clientViewModel)
@@ -116,6 +139,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(clientViewModel);
         }
 
+        [Authorize]
         // GET: ClientViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -135,6 +159,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         }
 
         // POST: ClientViewModels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

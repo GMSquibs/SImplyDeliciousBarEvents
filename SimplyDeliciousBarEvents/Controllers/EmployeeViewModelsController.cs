@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,14 @@ namespace SimplyDeliciousBarEvents.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: EmployeeViewModels
         public async Task<IActionResult> Index()
         {
             return View(await _context.EmployeeViewModel.ToListAsync());
         }
 
+        [Authorize]
         // GET: EmployeeViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -34,7 +37,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             }
 
             var employeeViewModel = await _context.EmployeeViewModel
-                .FirstOrDefaultAsync(m => m.ClientID == id);
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
             if (employeeViewModel == null)
             {
                 return NotFound();
@@ -43,6 +46,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(employeeViewModel);
         }
 
+        [Authorize]
         // GET: EmployeeViewModels/Create
         public IActionResult Create()
         {
@@ -52,9 +56,10 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: EmployeeViewModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientID,ContactNumber,FirstName,LastName,Email,Address,PrimaryOrSecondaryContact")] EmployeeViewModel employeeViewModel)
+        public async Task<IActionResult> Create([Bind("EmployeeID,ContactNumber,FirstName,LastName")] EmployeeViewModel employeeViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +70,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(employeeViewModel);
         }
 
+        [Authorize]
         // GET: EmployeeViewModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -84,11 +90,12 @@ namespace SimplyDeliciousBarEvents.Controllers
         // POST: EmployeeViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientID,ContactNumber,FirstName,LastName,Email,Address,PrimaryOrSecondaryContact")] EmployeeViewModel employeeViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeID,ContactNumber,FirstName,LastName")] EmployeeViewModel employeeViewModel)
         {
-            if (id != employeeViewModel.ClientID)
+            if (id != employeeViewModel.EmployeeID)
             {
                 return NotFound();
             }
@@ -102,7 +109,7 @@ namespace SimplyDeliciousBarEvents.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeViewModelExists(employeeViewModel.ClientID))
+                    if (!EmployeeViewModelExists(employeeViewModel.EmployeeID))
                     {
                         return NotFound();
                     }
@@ -116,6 +123,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(employeeViewModel);
         }
 
+        [Authorize]
         // GET: EmployeeViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -125,7 +133,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             }
 
             var employeeViewModel = await _context.EmployeeViewModel
-                .FirstOrDefaultAsync(m => m.ClientID == id);
+                .FirstOrDefaultAsync(m => m.EmployeeID == id);
             if (employeeViewModel == null)
             {
                 return NotFound();
@@ -135,6 +143,7 @@ namespace SimplyDeliciousBarEvents.Controllers
         }
 
         // POST: EmployeeViewModels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -147,7 +156,7 @@ namespace SimplyDeliciousBarEvents.Controllers
 
         private bool EmployeeViewModelExists(int id)
         {
-            return _context.EmployeeViewModel.Any(e => e.ClientID == id);
+            return _context.EmployeeViewModel.Any(e => e.EmployeeID == id);
         }
     }
 }

@@ -11,24 +11,24 @@ using SimplyDeliciousBarEvents.Models;
 
 namespace SimplyDeliciousBarEvents.Controllers
 {
-    public class EventViewModelsController : Controller
+    public class LocationsViewModelsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EventViewModelsController(ApplicationDbContext context)
+        public LocationsViewModelsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [Authorize]
-        // GET: EventViewModels
+        // GET: LocationsViewModels
         public async Task<IActionResult> Index()
         {
-            return View(await _context.EventViewModel.ToListAsync());
+            return View(await _context.LocationsViewModel.ToListAsync());
         }
 
         [Authorize]
-        // GET: EventViewModels/Details/5
+        // GET: LocationsViewModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -36,42 +36,42 @@ namespace SimplyDeliciousBarEvents.Controllers
                 return NotFound();
             }
 
-            var eventViewModel = await _context.EventViewModel
-                .FirstOrDefaultAsync(m => m.EventID == id);
-            if (eventViewModel == null)
+            var locationsViewModel = await _context.LocationsViewModel
+                .FirstOrDefaultAsync(m => m.LocationID == id);
+            if (locationsViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(eventViewModel);
+            return View(locationsViewModel);
         }
 
         [Authorize]
-        // GET: EventViewModels/Create
+        // GET: LocationsViewModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: EventViewModels/Create
+        // POST: LocationsViewModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventID,EventDate,EventTime,HeadCount,EventCost")] EventViewModel eventViewModel)
+        public async Task<IActionResult> Create([Bind("LocationID,LocationName,MainContact,ContactNumber,City,State,ZipCode")] LocationsViewModel locationsViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(eventViewModel);
+                _context.Add(locationsViewModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(eventViewModel);
+            return View(locationsViewModel);
         }
 
         [Authorize]
-        // GET: EventViewModels/Edit/5
+        // GET: LocationsViewModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,23 +79,23 @@ namespace SimplyDeliciousBarEvents.Controllers
                 return NotFound();
             }
 
-            var eventViewModel = await _context.EventViewModel.FindAsync(id);
-            if (eventViewModel == null)
+            var locationsViewModel = await _context.LocationsViewModel.FindAsync(id);
+            if (locationsViewModel == null)
             {
                 return NotFound();
             }
-            return View(eventViewModel);
+            return View(locationsViewModel);
         }
 
-        // POST: EventViewModels/Edit/5
+        // POST: LocationsViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventID,EventDate,EventTime,HeadCount,EventCost")] EventViewModel eventViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("LocationID,LocationName,MainContact,ContactNumber,City,State,ZipCode")] LocationsViewModel locationsViewModel)
         {
-            if (id != eventViewModel.EventID)
+            if (id != locationsViewModel.LocationID)
             {
                 return NotFound();
             }
@@ -104,12 +104,12 @@ namespace SimplyDeliciousBarEvents.Controllers
             {
                 try
                 {
-                    _context.Update(eventViewModel);
+                    _context.Update(locationsViewModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventViewModelExists(eventViewModel.EventID))
+                    if (!LocationsViewModelExists(locationsViewModel.LocationID))
                     {
                         return NotFound();
                     }
@@ -120,10 +120,11 @@ namespace SimplyDeliciousBarEvents.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(eventViewModel);
+            return View(locationsViewModel);
         }
 
-        // GET: EventViewModels/Delete/5
+        [Authorize]
+        // GET: LocationsViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,30 +132,31 @@ namespace SimplyDeliciousBarEvents.Controllers
                 return NotFound();
             }
 
-            var eventViewModel = await _context.EventViewModel
-                .FirstOrDefaultAsync(m => m.EventID == id);
-            if (eventViewModel == null)
+            var locationsViewModel = await _context.LocationsViewModel
+                .FirstOrDefaultAsync(m => m.LocationID == id);
+            if (locationsViewModel == null)
             {
                 return NotFound();
             }
 
-            return View(eventViewModel);
+            return View(locationsViewModel);
         }
 
-        // POST: EventViewModels/Delete/5
+        // POST: LocationsViewModels/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var eventViewModel = await _context.EventViewModel.FindAsync(id);
-            _context.EventViewModel.Remove(eventViewModel);
+            var locationsViewModel = await _context.LocationsViewModel.FindAsync(id);
+            _context.LocationsViewModel.Remove(locationsViewModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EventViewModelExists(int id)
+        private bool LocationsViewModelExists(int id)
         {
-            return _context.EventViewModel.Any(e => e.EventID == id);
+            return _context.LocationsViewModel.Any(e => e.LocationID == id);
         }
     }
 }

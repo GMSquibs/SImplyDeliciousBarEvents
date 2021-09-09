@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SimplyDeliciousBarEvents.Models;
 using System;
@@ -18,27 +19,37 @@ namespace SimplyDeliciousBarEvents.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
         }
+        
+        [Authorize]
         public IActionResult Events()
         {
             return View();
         }
+
+        [Authorize]
         public IActionResult Menu()
         {
             return View();
         }
+
+        [Authorize]
         public IActionResult Clients()
         {
             return View();
         }
+
+        [Authorize]
         public IActionResult EventSheet()
         {
             return View();

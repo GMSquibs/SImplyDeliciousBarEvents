@@ -1,59 +1,68 @@
-﻿@model IEnumerable<SimplyDeliciousBarEvents.Models.EventSheetViewModel>
+﻿@*@model IEnumerable<SimplyDeliciousBarEvents.Models.EventViewModel>*@
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Events";
+
+    string[] columns = new string[] {
+         "Client", "Client Contact Number","Location", "Date", "Time", "Cost", "Head Count", "Employee"
+    };
 }
 
-<h1>Index</h1>
+<h1>Events</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HeadCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventCost)
-            </th>
-            <th></th>
+            @{
+                foreach (var column in columns)
+                {
+                    <th>
+                        @column
+                    </th>
+                }
+            }
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
+    @{
+        if (Model != null)
+        {
+            foreach (var eventSheet in Model)
+            { 
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Location)
+                @eventSheet.Client
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
+                @eventSheet.ClientContactNumber
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventTime)
+                @eventSheet.Location
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HeadCount)
+                @eventSheet.EventDate
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventCost)
+                @eventSheet.EventTime
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EventSheetID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EventSheetID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventSheetID">Delete</a>
+                @eventSheet.EventCost
             </td>
+            <td>
+                @eventSheet.HeadCount
+            </td>
+            <td>
+                @eventSheet.Employee
+            </td>
+
         </tr>
-}
+            }
+            
+        }
+     }
+    <tbody>
+       
     </tbody>
 </table>
