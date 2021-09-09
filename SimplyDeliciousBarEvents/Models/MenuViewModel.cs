@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,9 @@ namespace SimplyDeliciousBarEvents.Models
 {
     public class MenuViewModel
     {
+        [Key]
+        public int MenuID {get;set;}
+
         private string _beverageName;
         private float _price;
         private int _servings;

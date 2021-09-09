@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,9 @@ namespace SimplyDeliciousBarEvents.Models
 {
     public class ClientViewModel
     {
+        [Key]
+        public int ClientID { get; set; }
+
         private string _contactNumber;
         private string _firstName;
         private string _lastName;

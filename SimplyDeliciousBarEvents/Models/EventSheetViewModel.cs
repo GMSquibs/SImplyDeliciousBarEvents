@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,9 @@ namespace SimplyDeliciousBarEvents.Models
 {
     public class EventSheetViewModel
     {
+        [Key]
+        public int EventSheetID { get; set; }
+
         private string _location;
         private DateTime _eventDate;
         private DateTime _eventTime;
