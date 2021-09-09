@@ -27,6 +27,22 @@ namespace SimplyDeliciousBarEvents.Controllers
         {
             return View();
         }
+        public IActionResult Events()
+        {
+            return View();
+        }
+        public IActionResult Menu()
+        {
+            return View();
+        }
+        public IActionResult Clients()
+        {
+            return View();
+        }
+        public IActionResult EventSheet()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
