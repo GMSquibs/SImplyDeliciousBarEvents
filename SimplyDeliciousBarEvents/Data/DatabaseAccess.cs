@@ -16,7 +16,8 @@ namespace SimplyDeliciousBarEvents.Models
         public List<LocationModel> _locations;
         public DatabaseAccess()
         {
-            string localConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\GitRepo\\WPFEventTracker\\WPFEventTracker\\WPFEventTracker\\EventTracker.mdf;Integrated Security=True;Connect Timeout=30";
+            //TODO code connection string 
+            string localConnection = "Temp";
             SqlSb = new SqlConnectionStringBuilder(localConnection);
         }
 
