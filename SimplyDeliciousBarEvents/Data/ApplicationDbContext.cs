@@ -13,13 +13,12 @@ namespace SimplyDeliciousBarEvents.Data
             : base(options)
         {
         }
-        public DbSet<SimplyDeliciousBarEvents.Models.ClientViewModel> ClientViewModel { get; set; }
-        public DbSet<SimplyDeliciousBarEvents.Models.MenuViewModel> MenuViewModel { get; set; }
-        public DbSet<SimplyDeliciousBarEvents.Models.EmployeeViewModel> EmployeeViewModel { get; set; }
-        public DbSet<SimplyDeliciousBarEvents.Models.EventSheetViewModel> EventSheetViewModel { get; set; }
-        public DbSet<SimplyDeliciousBarEvents.Models.EventViewModel> EventViewModel { get; set; }
-        public DbSet<SimplyDeliciousBarEvents.Models.LocationsViewModel> LocationsViewModel { get; set; }
-        
-        public DbSet<LocationsViewModel> locations { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.ClientModel> ClientViewModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.MenuModel> MenuViewModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.EmployeeModel> EmployeeViewModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.EventSheetModel> EventSheetViewModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.EventModel> EventViewModel { get; set; }     
+        public DbSet<SimplyDeliciousBarEvents.Models.LocationModel> LocationModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.AddressModel> AddressModel { get; set; }
     }
 }

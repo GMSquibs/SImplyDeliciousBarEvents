@@ -219,15 +219,39 @@ namespace SimplyDeliciousBarEvents.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.ClientViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.AddressModel", b =>
                 {
-                    b.Property<int>("ClientID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Address1")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AddressModel");
+                });
+
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.ClientModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ContactNumber")
                         .HasColumnType("nvarchar(max)");
@@ -241,41 +265,75 @@ namespace SimplyDeliciousBarEvents.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PrimaryOrSecondaryContact")
-                        .HasColumnType("int");
-
-                    b.HasKey("ClientID");
+                    b.HasKey("Id");
 
                     b.ToTable("ClientViewModel");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EmployeeViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EmployeeModel", b =>
                 {
-                    b.Property<int>("EmployeeID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("EmployeeContactNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EventViewModelEventID")
+                    b.Property<string>("EmployeeFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EventModelId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeID");
-
-                    b.HasIndex("EventViewModelEventID");
+                    b.HasIndex("EventModelId");
 
                     b.ToTable("EmployeeViewModel");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventSheetViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("EventCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EventLocationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EventNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("EventTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("HeadCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("EventLocationId");
+
+                    b.ToTable("EventViewModel");
+                });
+
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventSheetModel", b =>
                 {
                     b.Property<int>("EventSheetID")
                         .ValueGeneratedOnAdd()
@@ -311,71 +369,38 @@ namespace SimplyDeliciousBarEvents.Migrations
                     b.ToTable("EventSheetViewModel");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.LocationModel", b =>
                 {
-                    b.Property<int>("EventID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClientID")
+                    b.Property<int?>("LocationAddressId")
                         .HasColumnType("int");
 
-                    b.Property<float>("EventCost")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("EventDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("EventTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("HeadCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LocationID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EventID");
-
-                    b.HasIndex("ClientID");
-
-                    b.ToTable("EventViewModel");
-                });
-
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.LocationsViewModel", b =>
-                {
-                    b.Property<int>("LocationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("LocationContactNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LocationName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MainContact")
+                    b.Property<string>("LocationOwnerFirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("State")
+                    b.Property<string>("LocationOwnerLastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ZipCode")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("LocationID");
+                    b.HasIndex("LocationAddressId");
 
-                    b.ToTable("LocationsViewModel");
+                    b.ToTable("LocationModel");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.MenuViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.MenuModel", b =>
                 {
-                    b.Property<int>("MenuID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -383,23 +408,23 @@ namespace SimplyDeliciousBarEvents.Migrations
                     b.Property<string>("BeverageName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EventSheetViewModelEventSheetID")
+                    b.Property<int?>("EventModelId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EventViewModelEventID")
+                    b.Property<int?>("EventSheetModelEventSheetID")
                         .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Servings")
                         .HasColumnType("int");
 
-                    b.HasKey("MenuID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("EventSheetViewModelEventSheetID");
+                    b.HasIndex("EventModelId");
 
-                    b.HasIndex("EventViewModelEventID");
+                    b.HasIndex("EventSheetModelEventSheetID");
 
                     b.ToTable("MenuViewModel");
                 });
@@ -455,29 +480,40 @@ namespace SimplyDeliciousBarEvents.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EmployeeViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EmployeeModel", b =>
                 {
-                    b.HasOne("SimplyDeliciousBarEvents.Models.EventViewModel", null)
-                        .WithMany("Employees")
-                        .HasForeignKey("EventViewModelEventID");
+                    b.HasOne("SimplyDeliciousBarEvents.Models.EventModel", null)
+                        .WithMany("EmployeesWorkingEvent")
+                        .HasForeignKey("EventModelId");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.EventModel", b =>
                 {
-                    b.HasOne("SimplyDeliciousBarEvents.Models.ClientViewModel", "Client")
+                    b.HasOne("SimplyDeliciousBarEvents.Models.ClientModel", "Client")
                         .WithMany()
-                        .HasForeignKey("ClientID");
+                        .HasForeignKey("ClientId");
+
+                    b.HasOne("SimplyDeliciousBarEvents.Models.LocationModel", "EventLocation")
+                        .WithMany()
+                        .HasForeignKey("EventLocationId");
                 });
 
-            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.MenuViewModel", b =>
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.LocationModel", b =>
                 {
-                    b.HasOne("SimplyDeliciousBarEvents.Models.EventSheetViewModel", null)
-                        .WithMany("Menu")
-                        .HasForeignKey("EventSheetViewModelEventSheetID");
+                    b.HasOne("SimplyDeliciousBarEvents.Models.AddressModel", "LocationAddress")
+                        .WithMany()
+                        .HasForeignKey("LocationAddressId");
+                });
 
-                    b.HasOne("SimplyDeliciousBarEvents.Models.EventViewModel", null)
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.MenuModel", b =>
+                {
+                    b.HasOne("SimplyDeliciousBarEvents.Models.EventModel", null)
+                        .WithMany("EventMenu")
+                        .HasForeignKey("EventModelId");
+
+                    b.HasOne("SimplyDeliciousBarEvents.Models.EventSheetModel", null)
                         .WithMany("Menu")
-                        .HasForeignKey("EventViewModelEventID");
+                        .HasForeignKey("EventSheetModelEventSheetID");
                 });
 #pragma warning restore 612, 618
         }
