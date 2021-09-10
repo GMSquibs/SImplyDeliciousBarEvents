@@ -19,6 +19,18 @@ namespace SimplyDeliciousBarEvents.Models
         {
 
         }
+
+        public EmployeeViewModel(string firstName, string lastName, string contactNumber)
+        {
+
+        }
+
+        public EmployeeViewModel(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
         public string ContactNumber
         {
             get { return _contactNumber; }

@@ -15,6 +15,13 @@ namespace SimplyDeliciousBarEvents.Models
         private float _price;
         private int _servings;
 
+        public MenuViewModel(string beverageName, float price, int servings)
+        {
+            BeverageName = beverageName;
+            Price = price;
+            Servings = servings;
+        }
+
         public MenuViewModel()
         {
 

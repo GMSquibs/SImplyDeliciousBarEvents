@@ -11,7 +11,7 @@ namespace SimplyDeliciousBarEvents.Models
         [Key]
         public int EventID { get; set; }
 
-        //private string _location;
+        private string _locationID;
         private DateTime _eventDate;
         private TimeSpan _eventTime;
         private int _headCount;
@@ -25,11 +25,11 @@ namespace SimplyDeliciousBarEvents.Models
 
         }
 
-        //public string Location
-        //{
-        //    get { return _location; }
-        //    set { _location = value; }
-        //}
+        public string LocationID
+        {
+            get { return _locationID; }
+            set { _locationID = value; }
+        }
 
         public DateTime EventDate
         {

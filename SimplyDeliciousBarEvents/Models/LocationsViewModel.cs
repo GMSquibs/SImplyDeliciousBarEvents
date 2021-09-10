@@ -26,9 +26,24 @@ namespace SimplyDeliciousBarEvents.Models
             "Dooleys Chapel",
             "Diamond Room"
         };
+        public LocationsViewModel(string locationName, string mainContact, string contactNumber, string city, string state, int zipCode)
+        {
+            LocationName = locationName;
+            MainContact = mainContact;
+            ContactNumber = contactNumber;
+            City = city;
+            State = state;
+            ZipCode = zipCode;
+        }
+
+        public LocationsViewModel(string locationName)
+        {
+            LocationName = locationName;            
+        }
+
         public LocationsViewModel()
         {
-            
+
         }
 
         public string LocationName 
