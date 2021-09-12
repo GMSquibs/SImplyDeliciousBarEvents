@@ -6,7 +6,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimplyDeliciousBarEvents.Data;
 using SimplyDeliciousBarEvents.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimplyDeliciousBarEvents.Models
 {
@@ -16,7 +18,9 @@ namespace SimplyDeliciousBarEvents.Models
         public List<LocationModel> _locations;
         public DatabaseAccess()
         {
-            string localConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=E:\\GitRepo\\WPFEventTracker\\WPFEventTracker\\WPFEventTracker\\EventTracker.mdf;Integrated Security=True;Connect Timeout=30";
+            //harcoded for testing.
+            //TODO: pull from EF.
+            string localConnection = "";
             SqlSb = new SqlConnectionStringBuilder(localConnection);
         }
 
@@ -216,6 +220,34 @@ namespace SimplyDeliciousBarEvents.Models
             }
         }
 
+        public DataTable GetEventSheet(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = conn;
+                    command.CommandText = $"sp_GetEventSheet";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int) { Value = id });
+                    command.CommandTimeout = 30;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter a = new SqlDataAdapter(command);
+                    a.Fill(dt);
+
+                    conn.Close();
+                    return dt;
+                }
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+                return null;
+            }
+        }
         public void Dispose()
         {
             if (this != null)

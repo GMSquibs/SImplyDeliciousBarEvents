@@ -12,6 +12,12 @@ namespace SimplyDeliciousBarEvents.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
+        }
+
+        public ApplicationDbContext()
+        {
+
         }
         public DbSet<SimplyDeliciousBarEvents.Models.ClientModel> ClientViewModel { get; set; }
         public DbSet<SimplyDeliciousBarEvents.Models.MenuModel> MenuViewModel { get; set; }
@@ -20,5 +26,6 @@ namespace SimplyDeliciousBarEvents.Data
         public DbSet<SimplyDeliciousBarEvents.Models.EventModel> EventViewModel { get; set; }     
         public DbSet<SimplyDeliciousBarEvents.Models.LocationModel> LocationModel { get; set; }
         public DbSet<SimplyDeliciousBarEvents.Models.AddressModel> AddressModel { get; set; }
+        public DbSet<SimplyDeliciousBarEvents.Models.Invoice> Invoice { get; set; }
     }
 }
