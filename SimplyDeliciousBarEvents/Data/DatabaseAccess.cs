@@ -20,7 +20,7 @@ namespace SimplyDeliciousBarEvents.Models
         {
             //harcoded for testing.
             //TODO: pull from EF.
-            string localConnection = "";
+            string localConnection = @"Server=(localdb)\mssqllocaldb;Database=aspnet-SimplyDeliciousBarEvents-80C9A4C5-B657-4B85-8D9A-42B3F06C5167;Trusted_Connection=True;MultipleActiveResultSets=true";
             SqlSb = new SqlConnectionStringBuilder(localConnection);
         }
 
@@ -229,14 +229,15 @@ namespace SimplyDeliciousBarEvents.Models
                     conn.Open();
                     SqlCommand command = new SqlCommand();
                     command.Connection = conn;
-                    command.CommandText = $"sp_GetEventSheet";
+                    command.CommandText = $"sp_GetEventSheet"; 
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int) { Value = id });
                     command.CommandTimeout = 30;
 
+
                     DataTable dt = new DataTable();
                     SqlDataAdapter a = new SqlDataAdapter(command);
-                    a.Fill(dt);
+                    a.Fill(dt);          
 
                     conn.Close();
                     return dt;
