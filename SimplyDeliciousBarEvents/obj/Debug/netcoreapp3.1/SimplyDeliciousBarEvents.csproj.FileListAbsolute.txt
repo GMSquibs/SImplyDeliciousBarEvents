@@ -399,3 +399,6 @@ C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEve
 C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\obj\Debug\netcoreapp3.1\Razor\Views\Invoices\Details.cshtml.g.cs
 C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\obj\Debug\netcoreapp3.1\Razor\Views\Invoices\Edit.cshtml.g.cs
 C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\obj\Debug\netcoreapp3.1\Razor\Views\Invoices\Index.cshtml.g.cs
+C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\bin\Debug\netcoreapp3.1\App.Config
+C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\bin\Debug\netcoreapp3.1\Images\web.config
+C:\Users\Matthew\Documents\GitHub\SimplyDeliciousBarEvents\SimplyDeliciousBarEvents\bin\Debug\netcoreapp3.1\SimplyDeliciousBarEvents.dll.config
