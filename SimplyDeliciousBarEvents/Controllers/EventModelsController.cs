@@ -32,15 +32,21 @@ namespace SimplyDeliciousBarEvents.Controllers
             {
                 return NotFound();
             }
+            
+            //get info for event sheet view
+            DatabaseAccess db = new DatabaseAccess();
 
-            var eventModel = await _context.EventViewModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (eventModel == null)
+            var eventSheet = db.GetEventSheet(id.Value);
+
+            //var eventModel = await _context.EventViewModel
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (eventSheet.Rows.Count == 0 || eventSheet == null)
             {
                 return NotFound();
             }
 
-            return View(eventModel);
+            return View(eventSheet);
         }
 
         // GET: EventModels/Create

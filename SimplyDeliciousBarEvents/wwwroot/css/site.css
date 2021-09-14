@@ -69,4 +69,24 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  background-color:slateblue;
+  color:white;
 }
+
+.a-white{
+    color:white !important;
+}
+
+.header {
+background-color:slateblue;
+}
+
+.bg-slateblue {
+    background-color: slateblue !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+

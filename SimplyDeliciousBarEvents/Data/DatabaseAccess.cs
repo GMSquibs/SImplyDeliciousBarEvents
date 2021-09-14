@@ -6,7 +6,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SimplyDeliciousBarEvents.Data;
 using SimplyDeliciousBarEvents.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimplyDeliciousBarEvents.Models
 {
@@ -16,8 +18,9 @@ namespace SimplyDeliciousBarEvents.Models
         public List<LocationModel> _locations;
         public DatabaseAccess()
         {
-            //TODO code connection string 
-            string localConnection = "Temp";
+            //harcoded for testing.
+            //TODO: pull from EF.
+            string localConnection = @"Server=(localdb)\mssqllocaldb;Database=aspnet-SimplyDeliciousBarEvents-80C9A4C5-B657-4B85-8D9A-42B3F06C5167;Trusted_Connection=True;MultipleActiveResultSets=true";
             SqlSb = new SqlConnectionStringBuilder(localConnection);
         }
 
@@ -217,6 +220,35 @@ namespace SimplyDeliciousBarEvents.Models
             }
         }
 
+        public DataTable GetEventSheet(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.Connection = conn;
+                    command.CommandText = $"sp_GetEventSheet"; 
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int) { Value = id });
+                    command.CommandTimeout = 30;
+
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter a = new SqlDataAdapter(command);
+                    a.Fill(dt);          
+
+                    conn.Close();
+                    return dt;
+                }
+            }
+            catch (Exception e)
+            {
+                string error = e.Message;
+                return null;
+            }
+        }
         public void Dispose()
         {
             if (this != null)

@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edit Event</h1>
 
-<h4>EventModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,27 +13,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="EventDate" class="control-label"></label>
+                <label asp-for="EventDate" class="control-label">Event Date</label>
                 <input asp-for="EventDate" class="form-control" />
                 <span asp-validation-for="EventDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EventTime" class="control-label"></label>
+                <label asp-for="EventTime" class="control-label">Event Time</label>
                 <input asp-for="EventTime" class="form-control" />
                 <span asp-validation-for="EventTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EventNotes" class="control-label"></label>
+                <label asp-for="EventNotes" class="control-label">Event Notes</label>
                 <input asp-for="EventNotes" class="form-control" />
                 <span asp-validation-for="EventNotes" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EventCost" class="control-label"></label>
+                <label asp-for="EventCost" class="control-label">Event Cost</label>
                 <input asp-for="EventCost" class="form-control" />
                 <span asp-validation-for="EventCost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HeadCount" class="control-label"></label>
+                <label asp-for="HeadCount" class="control-label">Head Count</label>
                 <input asp-for="HeadCount" class="form-control" />
                 <span asp-validation-for="HeadCount" class="text-danger"></span>
             </div>

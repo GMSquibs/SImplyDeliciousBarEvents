@@ -369,6 +369,30 @@ namespace SimplyDeliciousBarEvents.Migrations
                     b.ToTable("EventSheetViewModel");
                 });
 
+            modelBuilder.Entity("SimplyDeliciousBarEvents.Models.Invoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("CalculatedCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Invoice");
+                });
+
             modelBuilder.Entity("SimplyDeliciousBarEvents.Models.LocationModel", b =>
                 {
                     b.Property<int>("Id")
