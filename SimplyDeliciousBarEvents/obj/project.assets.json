@@ -9029,24 +9029,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matthew\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\matsm\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matthew\\Documents\\GitHub\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents.csproj",
+      "projectUniqueName": "E:\\GitRepo\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents.csproj",
       "projectName": "SimplyDeliciousBarEvents",
-      "projectPath": "C:\\Users\\Matthew\\Documents\\GitHub\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents.csproj",
-      "packagesPath": "C:\\Users\\Matthew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matthew\\Documents\\GitHub\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\obj\\",
+      "projectPath": "E:\\GitRepo\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents.csproj",
+      "packagesPath": "C:\\Users\\matsm\\.nuget\\packages\\",
+      "outputPath": "E:\\GitRepo\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\SimplyDeliciousBarEvents\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Matthew\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\matsm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,14 @@ namespace SimplyDeliciousBarEvents.Controllers
             _context = context;
         }
 
+        [Authorize]
         // GET: EventModels
         public async Task<IActionResult> Index()
         {
             return View(await _context.EventViewModel.ToListAsync());
         }
 
+        [Authorize]
         // GET: EventModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,12 +52,14 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(eventSheet);
         }
 
+        [Authorize]
         // GET: EventModels/Create
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         // POST: EventModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -71,6 +76,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(eventModel);
         }
 
+        [Authorize]
         // GET: EventModels/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -87,6 +93,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(eventModel);
         }
 
+        [Authorize]
         // POST: EventModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -122,6 +129,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(eventModel);
         }
 
+        [Authorize]
         // GET: EventModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -140,6 +148,7 @@ namespace SimplyDeliciousBarEvents.Controllers
             return View(eventModel);
         }
 
+        [Authorize]
         // POST: EventModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

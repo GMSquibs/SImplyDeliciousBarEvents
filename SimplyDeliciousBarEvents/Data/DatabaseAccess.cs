@@ -30,7 +30,7 @@ namespace SimplyDeliciousBarEvents.Models
             set { _sqlsb = value; }
         }
         
-
+        //TODO: Create Locations View
         public DataTable GetLocations()
         {
             _locations = new List<LocationModel>();
@@ -60,6 +60,7 @@ namespace SimplyDeliciousBarEvents.Models
 
         }
 
+        //TODO: Create Clients View
         public DbDataReader GetClients()
         {
             using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
@@ -67,13 +68,14 @@ namespace SimplyDeliciousBarEvents.Models
                 conn.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = conn;
-                command.CommandText = "SELECT * FROM Clients";
+                command.CommandText = "SELECT * FROM vw_Clients";
                 command.CommandTimeout = 30;
 
                 return command.ExecuteReader();
             }
         }
 
+        //TODO: Create Employees View
         public DbDataReader GetEmployees()
         {
             using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
@@ -81,13 +83,14 @@ namespace SimplyDeliciousBarEvents.Models
                 conn.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = conn;
-                command.CommandText = "SELECT * FROM Employees";
+                command.CommandText = "SELECT * FROM vw_Employees";
                 command.CommandTimeout = 30;
 
                 return command.ExecuteReader();
             }
         }
 
+        //TODO: Create Menu View
         public DbDataReader GetMenu()
         {
             using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
@@ -95,13 +98,14 @@ namespace SimplyDeliciousBarEvents.Models
                 conn.Open();
                 SqlCommand command = new SqlCommand();
                 command.Connection = conn;
-                command.CommandText = "SELECT * FROM Menu";
+                command.CommandText = "SELECT * FROM vw_Menu";
                 command.CommandTimeout = 30;
 
                 return command.ExecuteReader();
             }
         }
 
+        //TODO: Create sp_CreateLocation and sp_CreateAddress
         public void CreateLocation(string locationName, string locationOwnerFirstName, string locationOwnerLastName, string locationContactNumber,
             string address1, string address2, string city, string state, string zipCode)
         {
@@ -111,7 +115,7 @@ namespace SimplyDeliciousBarEvents.Models
                 SqlCommand locationCommand = new SqlCommand();
                 locationCommand.Connection = conn;
                 locationCommand.CommandType = CommandType.StoredProcedure;
-                locationCommand.CommandText = "CreateLocation";
+                locationCommand.CommandText = "sp_CreateLocation";
                 locationCommand.CommandTimeout = 30;
 
                 locationCommand.Parameters.AddRange(
@@ -135,6 +139,7 @@ namespace SimplyDeliciousBarEvents.Models
             }
         }
 
+        //TODO: Create sp_UpdateLocation
         public void UpdateLocation(string locationName, string locationOwnerFirstName, string locationOwnerLastName, string locationContactNumber,
             string address1, string address2, string city, string state, string zipCode)
         {
@@ -144,7 +149,7 @@ namespace SimplyDeliciousBarEvents.Models
                 SqlCommand locationCommand = new SqlCommand();
                 locationCommand.Connection = conn;
                 locationCommand.CommandType = CommandType.StoredProcedure;
-                locationCommand.CommandText = "UpdateLocation";
+                locationCommand.CommandText = "sp_UpdateLocation";
                 locationCommand.CommandTimeout = 30;
 
                 locationCommand.Parameters.AddRange(
@@ -168,6 +173,7 @@ namespace SimplyDeliciousBarEvents.Models
             }
         }
 
+        //TODO: Create sp_CreateAddress
         public void CreateAddress(string address1, string address2, string city, string state, string zipCode)
         {
             using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
@@ -176,7 +182,7 @@ namespace SimplyDeliciousBarEvents.Models
                 SqlCommand addressCommand = new SqlCommand();
                 addressCommand.Connection = conn;
                 addressCommand.CommandType = CommandType.StoredProcedure;
-                addressCommand.CommandText = "UpdateAddress";
+                addressCommand.CommandText = "sp_CreateAddress";
                 addressCommand.CommandTimeout = 30;
 
                 addressCommand.Parameters.AddRange(
@@ -194,6 +200,7 @@ namespace SimplyDeliciousBarEvents.Models
             }
         }
 
+        //TODO: Create sp_UpdateAddress
         public void UpdateAddress(string address1, string address2, string city, string state, string zipCode)
         {
             using (SqlConnection conn = new SqlConnection(_sqlsb.ConnectionString))
@@ -202,7 +209,7 @@ namespace SimplyDeliciousBarEvents.Models
                 SqlCommand addressCommand = new SqlCommand();
                 addressCommand.Connection = conn;
                 addressCommand.CommandType = CommandType.StoredProcedure;
-                addressCommand.CommandText = "CreateAddress";
+                addressCommand.CommandText = "sp_UpdateAddress";
                 addressCommand.CommandTimeout = 30;
 
                 addressCommand.Parameters.AddRange(
